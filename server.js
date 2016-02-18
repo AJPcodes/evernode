@@ -14,7 +14,13 @@ app.set('view engine', 'jade');
 app.use(bodyParser.urlencoded({extended: false}));
 
 app.get('/', (req, res) => {
-  res.render('index');
+  const Note = require('./models/note');
+  Note.find((err, notes)=>{
+  if (err) throw err;
+  console.log(notes);
+  res.render('index', {notes: notes});
+  })
+
 });
 
 app.get('/notes/new', (req, res) => {
