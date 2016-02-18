@@ -4,12 +4,16 @@ const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const methodOverride = require('method-override')
+
 
 const notes = require('./routes/notes');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// override with POST having ?_method=DELETE
+app.use(methodOverride('_method'))
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 

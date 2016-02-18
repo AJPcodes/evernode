@@ -16,11 +16,22 @@ module.exports.create = (req, res) => {
 
 };
 
+
+
 module.exports.show = (req, res) => {
 
   Note.findOne({"_id" : req.params.id}, (err, foundNote) => {
     if (err) throw err;
     res.render('note', {note: foundNote});
+  })
+
+};
+
+module.exports.delete = (req, res) => {
+
+  Note.remove({"_id" : req.params.id}, (err) => {
+    if (err) throw err;
+    res.redirect('/');
   })
 
 };

@@ -9,4 +9,6 @@ router.get('/notes/:id', noteCtrl.show);
 
 router.post('/notes', noteCtrl.create);
 
+router.delete('/notes/:id', noteCtrl.delete);
+
 module.exports = router;
