@@ -3,16 +3,22 @@ html
   include ./includes/head.jade
   body
     div#main
-      form(method="POST", action="/notes")
+      if note
+        h1 Edit Note
+      else
+        h1 New Note
+      - if (note) {note.override = "/" + note._id + "/?_method=PUT"}
+      - var item = note || {title: '', text: '', author: '', override: ""}
+      form(method="POST", action="/notes#{item.override}")
         .input-group
           label(for='title') Title
-          input#title(type='text' name='title')
+          input#title(type='text' name='title' value="#{item.title}")
         .input-group
           label(for='author') Author
-          input#author(type='text' name='author')
+          input#author(type='text' name='author' value="#{item.author}")
         .input-group
           label(for='text') Entry
-          textarea(name='text')
+          textarea(name='text')= item.text
         .input-group
           input(type='submit', value='Save')
 
