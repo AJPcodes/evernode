@@ -6,9 +6,7 @@ html
       h1 Hello World. This is EverNode
       a(href="/notes/new") Leave a note!
       ul
-        - for (var i = 0; i < notes.length; ++i) {
-          li <a href="/notes/#{notes[i]._id}">#{notes[i].title}</a> by #{notes[i].author}
-        - }
-
+        each note in notes
+          li: <a href='/notes/#{note._id}'> #{note.title} </a> by #{note.author}
 
     include ./includes/scripts.jade
