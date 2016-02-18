@@ -1,0 +1,10 @@
+doctype html
+html
+  include ./includes/head.jade
+  body
+    div#main
+      p #{note.title}
+      p by #{note.author}
+      p #{note.text}
+
+    include ./includes/scripts.jade

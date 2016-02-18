@@ -21,14 +21,23 @@ app.get('/notes/new', (req, res) => {
   res.render('new-note');
 });
 
+app.get('/notes/:id', (req, res) => {
+
+  const Note = require('./models/note');
+  Note.findOne({"_id" : req.params.id}, (err, foundNote) => {
+    if (err) throw err;
+    res.render('note', {note: foundNote});
+  })
+
+});
+
 app.post('/notes', (req, res) => {
 
   const Note = require('./models/note');
 
   Note.create(req.body, (err, note) => {
     if (err) throw err
-    console.log(note);
-    res.redirect('/');
+    res.redirect(`/notes/${note._id}`);
   });
 });
 
