@@ -5,6 +5,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
+const notes = require('./routes/notes');
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -23,29 +25,7 @@ app.get('/', (req, res) => {
 
 });
 
-app.get('/notes/new', (req, res) => {
-  res.render('new-note');
-});
-
-app.get('/notes/:id', (req, res) => {
-
-  const Note = require('./models/note');
-  Note.findOne({"_id" : req.params.id}, (err, foundNote) => {
-    if (err) throw err;
-    res.render('note', {note: foundNote});
-  })
-
-});
-
-app.post('/notes', (req, res) => {
-
-  const Note = require('./models/note');
-
-  Note.create(req.body, (err, note) => {
-    if (err) throw err
-    res.redirect(`/notes/${note._id}`);
-  });
-});
+app.use(notes);
 
 mongoose.connect('mongodb://localhost:27017/evernode');
 
