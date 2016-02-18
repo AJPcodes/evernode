@@ -1,0 +1,19 @@
+doctype html
+html
+  include ./includes/head.jade
+  body
+    div#main
+      form(method="POST", action="/notes")
+        .input-group
+          label(for='title') Title
+          input#title(type='text' name='title')
+        .input-group
+          label(for='text') Entry
+          textarea(name='text')
+        .input-group
+          label(for='author') Author
+          input#author(type='text' name='author')
+        .input-group
+          input(type='submit', value='Save')
+
+    include ./includes/scripts.jade
