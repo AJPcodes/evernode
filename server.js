@@ -7,8 +7,7 @@ const mongoose = require('mongoose');
 const methodOverride = require('method-override');
 
 
-const notes = require('./routes/notes');
-const categories = require('./routes/categories');
+const routes = require('./routes/');
 
 const logger = require('./srvs/logger');
 
@@ -23,9 +22,8 @@ app.set('view engine', 'jade');
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static(path.join(__dirname, 'www')));
 
+app.use(routes);
 app.use(logger);
-app.use(notes);
-app.use(categories);
 
 app.get('/', (req, res) => {
 
