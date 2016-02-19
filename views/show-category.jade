@@ -1,5 +1,6 @@
 include ./includes/head.jade
 body
+  include ./includes/navBar.jade
   div#main.card
     h5 #{category.title}
     p <a href="#{category._id}/edit"> Edit</a>
@@ -8,8 +9,9 @@ body
 
     each note in notes
         p: <a href='/notes/#{note._id}'> #{note.title} </a> by #{note.author}
-
+    p Leave a <a href="/notes/new">note</a>
     form(method='POST' action="/categories/#{category._id}?_method=DELETE")
       input(type='submit', value='Delete Category')
+
 
   include ./includes/scripts.jade
