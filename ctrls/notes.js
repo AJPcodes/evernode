@@ -2,6 +2,16 @@
 
 const Note = require('../models/note');
 
+module.exports.all = (req, res) => {
+
+  Note.find((err, notes)=>{
+  if (err) throw err;
+  console.log(notes);
+  res.render('note-index', {notes: notes});
+  })
+
+};
+
 module.exports.new = (req, res) => {
   res.render('new-note');
 };
@@ -17,16 +27,13 @@ module.exports.create = (req, res) => {
 
 module.exports.show = (req, res) => {
 
-  Note.findOne({"_id" : req.params.id}, (err, foundNote) => {
-    if (err) throw err;
-    res.render('show-note', {note: foundNote});
-  })
+  res.render('show-note', {note: req.note});
 
 };
 
 module.exports.delete = (req, res) => {
 
-  Note.remove({"_id" : req.params.id}, (err) => {
+  req.note.remove((err) => {
     if (err) throw err;
     res.redirect('/');
   })
@@ -35,27 +42,15 @@ module.exports.delete = (req, res) => {
 
 module.exports.edit = (req, res) => {
 
-  Note.findOne({"_id" : req.params.id}, (err, foundNote) => {
-    if (err) throw err;
-    res.render('new-note', {note: foundNote});
-  })
+    res.render('new-note', {note: req.note});
 
 };
 
 module.exports.update = (req, res) => {
 
-  Note.findOne({"_id" : req.params.id}, (err, foundNote) => {
-    if (err) throw err;
-
-    foundNote.text = req.body.text;
-    foundNote.author = req.body.author;
-    foundNote.title = req.body.title;
-
-    foundNote.save(function(err){
+    req.note.update(req.body, function(err){
       if (err) throw err;
-      res.redirect('/notes/' + req.params.id);
+      res.redirect('/notes/' + req.note._id);
     })
-
-  })
 
 };

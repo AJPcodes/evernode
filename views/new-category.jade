@@ -1,0 +1,19 @@
+doctype html
+html
+  include ./includes/head.jade
+  body
+    div#main
+      if category
+        h1 Edit Category
+      else
+        h1 New Category
+      - if (category) {category.override = "/" + category._id + "/?_method=PUT"}
+      - var item = category || {title: '', text: '', author: '', override: ""}
+      form(method="POST", action="/categories#{item.override}")
+        .input-group
+          label(for='title') Title
+          input#title(type='text' name='title' value="#{item.title}")
+        .input-group
+          input(type='submit', value='Save')
+
+    include ./includes/scripts.jade

@@ -8,6 +8,9 @@ const methodOverride = require('method-override');
 
 
 const notes = require('./routes/notes');
+const categories = require('./routes/categories');
+
+const logger = require('./srvs/logger');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -18,18 +21,20 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
 app.use(bodyParser.urlencoded({extended: false}));
+app.use(express.static(path.join(__dirname, 'www')));
+
+app.use(logger);
+app.use(notes);
+app.use(categories);
 
 app.get('/', (req, res) => {
-  const Note = require('./models/note');
-  Note.find((err, notes)=>{
-  if (err) throw err;
-  console.log(notes);
-  res.render('index', {notes: notes});
-  })
+
+ res.redirect('/notes');
 
 });
 
-app.use(notes);
+//middleware function to log to the database all server requests
+
 
 mongoose.connect('mongodb://localhost:27017/evernode');
 

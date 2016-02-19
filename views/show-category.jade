@@ -1,0 +1,13 @@
+doctype html
+html
+  include ./includes/head.jade
+  body
+    div#main
+      p #{category.title}
+
+    a(href="#{category._id}/edit") Edit
+
+    form(method='POST' action="/notes/#{category._id}?_method=DELETE")
+      input(type='submit', value='Delete')
+
+    include ./includes/scripts.jade

@@ -1,0 +1,13 @@
+doctype html
+html
+  include ./includes/head.jade
+  body
+    div#main
+      h1 This is EverNode
+      h2 You're looking at Categories. Want to start a new topic? Click below.
+      a(href="/categories/new") Start a conversation!
+      ul
+        each category in categories
+          li: <a href='/categories/#{category._id}'> #{category.title} </a> by #{category.author}
+
+    include ./includes/scripts.jade
