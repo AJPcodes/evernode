@@ -1,15 +1,15 @@
 include ./includes/head.jade
 body
   div#main.card
-    p #{category.title}
+    h5 #{category.title}
+    p <a href="#{category._id}/edit"> Edit</a>
     p #{category.description}
 
-    a(href="#{category._id}/edit") Edit
-
-    form(method='POST' action="/notes/#{category._id}?_method=DELETE")
-      input(type='submit', value='Delete')
 
     each note in notes
-        li: <a href='/notes/#{note._id}'> #{note.title} </a> by #{note.author}
+        p: <a href='/notes/#{note._id}'> #{note.title} </a> by #{note.author}
+
+    form(method='POST' action="/categories/#{category._id}?_method=DELETE")
+      input(type='submit', value='Delete Category')
 
   include ./includes/scripts.jade

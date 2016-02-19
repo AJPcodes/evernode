@@ -1,14 +1,14 @@
 include ./includes/head.jade
 body
   div#main.card
-    p #{note.title}
-    p by #{note.author}
+    h5 #{note.title} by #{note.author}
+    p <a href="#{note._id}/edit"> Edit</a>
+    p Category: #{note.category.title}
     p #{note.text}
-    p #{note.category.title}
 
-    a(href="#{note._id}/edit") Edit
+
 
     form(method='POST' action="/notes/#{note._id}?_method=DELETE")
-      input(type='submit', value='Delete')
+      input(type='submit', value='Delete Note')
 
   include ./includes/scripts.jade

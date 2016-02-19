@@ -2,8 +2,8 @@ include ./includes/head.jade
 body
   div#main.card
     h1 EverNode
-    h2 You're looking at Categories. Want to start a new topic? Click below.
-    a(href="/categories/new") Start a conversation!
+    h4 Leave a <a href="/notes/new">note</a> or browse <a href="/notes">All Entries<a>
+    h5 Don't see a topic you're intersted in? <a href="/categories/new"> Start a conversation! </a>
     ul
       each category in categories
         li

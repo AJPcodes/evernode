@@ -2,8 +2,8 @@ include ./includes/head.jade
 body
   div#main.card
     h1 EverNode
-    a(href="/notes/new") Leave a note!
-    p or look at <a href="/categories">Categories<a>
+    h4 Leave a <a href="/notes/new">note</a> or browse by <a href="/categories">Categories<a>
+    h5 Notes on the site
     ul
       each note in notes
         li: <a href='/notes/#{note._id}'> #{note.title} </a> by #{note.author} in #{note.category.title}

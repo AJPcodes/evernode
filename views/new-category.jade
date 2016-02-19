@@ -1,7 +1,10 @@
 include ./includes/head.jade
 body
   div#main.card
-    h1 New Category
+    if category
+      h1 Edit Category
+    else
+      h1 New Category
     - if (category) {category.override = "/" + category._id + "/?_method=PUT"}
     - var item = category || {title: '', description: '', override: ""}
     form(method="POST", action="/categories#{item.override}")

@@ -30,26 +30,26 @@ module.exports.show = (req, res) => {
 
 };
 
-// module.exports.delete = (req, res) => {
+module.exports.delete = (req, res) => {
 
-//   req.category.remove((err) => {
-//     if (err) throw err;
-//     res.redirect('/');
-//   })
+  req.category.remove((err) => {
+    if (err) throw err;
+    res.redirect('/');
+  })
 
-// };
+};
 
-// module.exports.edit = (req, res) => {
+module.exports.edit = (req, res) => {
 
-//     res.render('new-category', {category: req.category});
+    res.render('new-category', {category: req.category});
 
-// };
+};
 
-// module.exports.update = (req, res) => {
+module.exports.update = (req, res) => {
 
-//     req.category.update(req.body, function(err){
-//       if (err) throw err;
-//       res.redirect('/notes/' + req.category._id);
-//     })
+    req.category.update(req.body, function(err){
+      if (err) throw err;
+      res.redirect('/categories/' + req.category._id);
+    })
 
-// };
+};
