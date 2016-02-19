@@ -1,13 +1,15 @@
-doctype html
-html
-  include ./includes/head.jade
-  body
-    div#main
-      p #{category.title}
+include ./includes/head.jade
+body
+  div#main.card
+    p #{category.title}
+    p #{category.description}
 
     a(href="#{category._id}/edit") Edit
 
     form(method='POST' action="/notes/#{category._id}?_method=DELETE")
       input(type='submit', value='Delete')
 
-    include ./includes/scripts.jade
+    each note in notes
+        li: <a href='/notes/#{note._id}'> #{note.title} </a> by #{note.author}
+
+  include ./includes/scripts.jade

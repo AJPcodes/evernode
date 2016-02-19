@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
+const Note = require('../models/note');
 const Category = require('../models/category');
 const categoryCtrl = require('../ctrls/categories');
 
@@ -10,7 +11,14 @@ router.param('id', (req, res, next, id) => {
     if (err) throw err;
 
     req.category = category;
+
+    Note.find({'category' : category._id}, (err, notes) => {
+    if (err) throw err;
+
+    req.notes = notes;
     next();
+
+    });
   });
 
 });

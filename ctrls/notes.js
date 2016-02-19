@@ -1,19 +1,29 @@
 "use strict";
 
 const Note = require('../models/note');
+const Category = require('../models/category');
 
 module.exports.all = (req, res) => {
 
-  Note.find((err, notes)=>{
+  Note
+  .find()
+  .populate('category')
+  .exec((err, notes)=>{
   if (err) throw err;
-  console.log(notes);
+
   res.render('note-index', {notes: notes});
   })
 
 };
 
 module.exports.new = (req, res) => {
-  res.render('new-note');
+
+  Category.find((err, categories)=>{
+  if (err) throw err;
+  console.log(categories);
+  res.render('new-note', {categories: categories});
+  })
+
 };
 
 module.exports.create = (req, res) => {
@@ -42,7 +52,12 @@ module.exports.delete = (req, res) => {
 
 module.exports.edit = (req, res) => {
 
-    res.render('new-note', {note: req.note});
+  Category.find((err, categories)=>{
+  if (err) throw err;
+  res.render('new-note', {categories: categories, note: req.note});
+  })
+
+
 
 };
 

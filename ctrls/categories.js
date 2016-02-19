@@ -26,7 +26,7 @@ module.exports.create = (req, res) => {
 
 module.exports.show = (req, res) => {
 
-  res.render('show-category', {category: req.category});
+  res.render('show-category', {category: req.category, notes: req.notes});
 
 };
 

@@ -1,13 +1,11 @@
-doctype html
-html
-  include ./includes/head.jade
-  body
-    div#main
-      h1 Hello World. This is EverNode
-      a(href="/notes/new") Leave a note!
-      p or look at <a href="/categories">Categories<a>
-      ul
-        each note in notes
-          li: <a href='/notes/#{note._id}'> #{note.title} </a> by #{note.author}
+include ./includes/head.jade
+body
+  div#main.card
+    h1 EverNode
+    a(href="/notes/new") Leave a note!
+    p or look at <a href="/categories">Categories<a>
+    ul
+      each note in notes
+        li: <a href='/notes/#{note._id}'> #{note.title} </a> by #{note.author} in #{note.category.title}
 
-    include ./includes/scripts.jade
+  include ./includes/scripts.jade
