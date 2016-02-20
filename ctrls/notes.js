@@ -20,7 +20,6 @@ module.exports.new = (req, res) => {
 
   Category.find((err, categories)=>{
   if (err) throw err;
-  console.log(categories);
   res.render('new-note', {categories: categories});
   })
 
