@@ -7,7 +7,7 @@ body
     ul
       each category in categories
         li
-          a(href='/categories/#{category._id}') #{category.title}
+          a(href='/categories/#{category._id}') <i class="fa fa-list"></i> #{category.title}
           p - #{category.description}
 
   include ./includes/scripts.jade

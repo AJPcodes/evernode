@@ -8,7 +8,7 @@ body
 
 
     each note in notes
-        p: <a href='/notes/#{note._id}'> #{note.title} </a> by #{note.author}
+        p: <a href='/notes/#{note._id}'><i class="fa fa-sticky-note-o"></i> #{note.title} </a> by #{note.author}
     p Leave a <a href="/notes/new">note</a>
     form(method='POST' action="/categories/#{category._id}?_method=DELETE")
       input(type='submit', value='Delete Category')
